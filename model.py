@@ -23,17 +23,32 @@ def income_categories(df):
     df = pd.cut(df['median_income'], bins=[0, 1.5, 3, 4.5, 6, np.inf], labels=[1, 2, 3, 4, 5]).astype(int)
     return df
 
-# Step 3 - stratified_split (not yet solved)
-# TODO: implement
+# Step 3 - stratified_split
+import sklearn
+def stratified_split(df, test_size=0.2, random_state=42):
+    # TODO: train_test_split stratified on income_categories(df); return (train_set, test_set).
+    stratas = income_categories(df)
+    train_set, test_set = sklearn.model_selection.train_test_split(df, test_size=test_size, random_state=random_state, stratify=stratas)
+    return (train_set, test_set)
 
 # Step 4 - explore_correlations (not yet solved)
 # TODO: implement
 
-# Step 5 - add_ratio_features (not yet solved)
-# TODO: implement
+# Step 5 - add_ratio_features
+def add_ratio_features(df):
+    # TODO: Return a copy with rooms_per_house, bedrooms_ratio and people_per_house columns added.
+    df1 = df.copy()
+    df1['rooms_per_house'] = df['total_rooms']/df['households']
+    df1['bedrooms_ratio'] = df['total_bedrooms']/df['total_rooms']
+    df1['people_per_house'] = df['population']/df['households']
+    return df1
 
-# Step 6 - split_features_labels (not yet solved)
-# TODO: implement
+# Step 6 - split_features_labels
+def split_features_labels(df):
+    # TODO: Return (X without median_house_value, y = median_house_value Series).
+    y = df['median_house_value']
+    X = df.drop('median_house_value')
+    return (X, y)
 
 # Step 7 - ClusterSimilarity (not yet solved)
 # TODO: implement
@@ -58,8 +73,10 @@ def rmse(y_true, y_pred):
 # Step 13 - cross_val_rmse (not yet solved)
 # TODO: implement
 
-# Step 14 - linear_model (not yet solved)
-# TODO: implement
+# Step 14 - linear_model
+def linear_model(preprocessing):
+    # TODO: make_pipeline(preprocessing, LinearRegression())
+    return make_pipeline(preprocessing, LinearRegression())
 
 # Step 15 - forest_model (not yet solved)
 # TODO: implement
