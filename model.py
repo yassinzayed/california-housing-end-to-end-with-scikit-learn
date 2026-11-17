@@ -6,11 +6,22 @@ Assembled from your step-by-step solutions.
 
 import numpy as np
 
-# Step 1 - load_housing (not yet solved)
-# TODO: implement
+# Step 1 - load_housing
+def load_housing():
+    # TODO: Download housing.tgz once into tempfile.gettempdir() and read housing/housing.csv from it.
+    url = "https://github.com/ageron/data/raw/main/housing.tgz"
+    path = os.path.join(tempfile.gettempdir(), "housing.tgz")
+    if not os.path.exists(path):
+        urllib.request.urlretrieve(url, path)
+    with tarfile.open(path) as tar:
+        csv_file = tar.extractfile("housing/housing.csv")
+        return pd.read_csv(csv_file)
 
-# Step 2 - income_categories (not yet solved)
-# TODO: implement
+# Step 2 - income_categories
+def income_categories(df):
+    # TODO: pd.cut median_income with edges [0, 1.5, 3, 4.5, 6, inf] and labels 1..5; return an int Series.
+    binned = pd.cut(df, [0, 1.5, 3, 4.5, 6, np.inf], [1, 2, 3, 4, 5])
+    return binned
 
 # Step 3 - stratified_split (not yet solved)
 # TODO: implement
