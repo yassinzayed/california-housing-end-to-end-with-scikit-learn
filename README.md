@@ -21,7 +21,7 @@ python scaffold.py
 - [ ] **9.** categorical_pipeline
 - [ ] **10.** build_preprocessing
 - [x] **11.** rmse
-- [ ] **12.** dummy_baseline_rmse
+- [x] **12.** dummy_baseline_rmse
 - [ ] **13.** cross_val_rmse
 - [x] **14.** linear_model
 - [ ] **15.** forest_model
